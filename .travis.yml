@@ -1,0 +1,28 @@
+ist: trusty
+language: c
+compiler:
+    - clang
+    - gcc
+os:
+    - linux
+addons:
+    apt:
+        packages:
+            - build-essential
+            - gcc
+            - git
+            - make
+env:
+    global:
+        - LD_LIBRARY_PATH=.
+
+install:
+    - make
+    - make examples
+
+script:
+    - make
+    - make examples
+    - examples/write
+    - tests/mvapich.sh
+    - tests/ior.sh
